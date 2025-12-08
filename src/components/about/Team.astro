@@ -116,11 +116,9 @@ const team = [
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
       {team.map((member, index) => (
         <div 
-          class={`bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col sm:flex-row items-center sm:items-start gap-6
-            ${index === 0 ? "col-span-2 h-80" : "h-52"}`}
-          >
+          class={`bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col sm:flex-row items-center sm:items-start gap-6 ${index === 0 ? "sm:col-span-2 sm:h-80" : "sm:h-56"}`}>
           
-          <figure class="shrink-0 w-auto h-full overflow-hidden">
+          <figure class={`shrink-0 h-auto overflow-hidden ${index === 0 ? "w-44": "w-44 sm:w-36"}`}>
             <Image 
               src={member.img} 
               alt={member.name} 

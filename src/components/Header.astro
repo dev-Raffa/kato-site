@@ -2,6 +2,7 @@
 import logoImg from '../assets/logo.webp';
 import seloEureciclo from '../assets/selo-eureciclo.webp';
 import { infoLinks } from '../consts/info-links';
+import MobileNavigation from './Layout/MobileNavigation.astro';
 ---
 <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent py-2">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -64,11 +65,7 @@ import { infoLinks } from '../consts/info-links';
                 </ul>
             </nav>
 
-            <div class="md:hidden">
-                <button class="text-white focus:outline-none">
-                    <i class="fa-solid fa-bars fa-2x"></i>
-                </button>
-            </div>
+            <MobileNavigation />
         </div>
     </div>
 </header>
