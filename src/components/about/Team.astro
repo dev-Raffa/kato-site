@@ -1,0 +1,148 @@
+---
+import MarianaImg from '../../assets/team/mariana.jpg'
+import ViniciusImg from '../../assets/team/vinncius.png'
+import VicImg from '../../assets/team/victoria.webp'
+import MuriloImg from '../../assets/team/murilo.webp'
+import GabiImg from '../../assets/team/gabi.webp'
+import EduardoImg from '../../assets/team/eduardo.webp'
+import WesleyImg from '../../assets/team/wesley.webp'
+import AngeloImg from '../../assets/team/angelo.webp'
+import AnaBeaImg from '../../assets/team/anabea.webp'
+import Image from 'astro/components/Image.astro'
+
+const team = [
+  {
+    name: "Mariana Kato",
+    role: "Proprietária / Eng. Ambiental",
+    img: MarianaImg,
+    bio: [
+      "Bacharel em Engenharia Ambiental pelo Centro Universitário Barão de Mauá;",
+      "Mestre em Engenharia do Meio Ambiente pela FEUP – Portugal;",
+      "Atuando na área de Consultoria Ambiental desde 2014.",
+      "Proprietária da Consultoria KATO AMBIENTAL desde 2019."
+    ]
+  },
+  {
+    name: "Vinnicius de Souza",
+    role: "Área Comercial",
+    img: ViniciusImg,
+    bio: [
+      "Licenciatura em Ciências Biológicas pela Faculdade Estadual Paulista – UNESP;",
+      "Atuando na Área Comercial desde 2022."
+    ]
+  },
+  {
+    name: "Victória Marcolino",
+    role: "Consultoria Ambiental",
+    img: VicImg,
+    bio: [
+      "Bacharel em Engenharia Ambiental pelo Centro Universitário Barão de Mauá;",
+      "Tecnóloga em Gestão Ambiental pelo Centro Estácio;",
+      "Atuando na área de Consultoria Ambiental desde 2018."
+    ]
+  },
+  {
+    name: "Murilo Torelli",
+    role: "Especialista em Mapas e Plantas",
+    img: MuriloImg,
+    bio: [
+      "Bacharel em Engenharia Ambiental pelo Centro Universitário Barão de Mauá;",
+      "Pós Graduado em Georreferenciamento de Imóveis pela Uniube;",
+      "Atuando na área de Consultoria Ambiental desde 2018."
+    ]
+  },
+  {
+    name: "Gabriela Neves",
+    role: "Jurídica / Administrativa",
+    img: GabiImg,
+    bio: [
+      "Bacharel em Direito pela Universidade Paulista UNIP;",
+      "Atuando na área Jurídica/Administrativa desde 2018."
+    ]
+  },
+  {
+    name: "Eduardo Kato",
+    role: "Engenharia Civil / AVCB",
+    img: EduardoImg,
+    bio: [
+      "Bacharel em Engenharia Civil pela Universidade Paulista (UNIP);",
+      "Especialista em AVCB, CLCB e administração de obras fotovoltaicas.",
+      "Técnico Eletroeletrônico. Atuando na área desde 2022."
+    ]
+  },
+  {
+    name: "Wesley Rezende",
+    role: "Consultoria Ambiental",
+    img: WesleyImg,
+    bio: [
+      "Bacharel em Ciências Biológicas pela Faculdade São Luís de Jaboticabal;",
+      "Técnico em Administração de empresas pela ETEC.",
+      "Atuando na área de Consultoria Ambiental desde 2022."
+    ]
+  },
+  {
+    name: "Ângelo Lima",
+    role: "Marketing e Área Comercial",
+    img: AngeloImg,
+    bio: [
+      "Bacharel/Licenciatura em Ciências Biológicas pelo Centro Universitário Barão de Mauá;",
+      "Atuando na área de Educação Ambiental desde 2019.",
+      "Marketing e Área Comercial desde 2022."
+    ]
+  },
+  {
+    name: "Ana Beatriz Mikami Kato",
+    role: "Educação Ambiental",
+    img: AnaBeaImg,
+    bio: [
+      "Graduanda em Engenharia Ambiental na UFTM;",
+      "Atuando na área de Educação Ambiental desde 2021.",
+      "Ex-estagiária na CODAU de Uberaba (Laboratório da ETE)."
+    ]
+  }
+];
+---
+
+<section class="py-20 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 flex items-center justify-center gap-2">
+        <span class="text-black">Nossos</span> <span class="text-primary">Colaboradores</span>
+        <i class="fa-solid fa-leaf text-primary text-xl"></i>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+      {team.map((member, index) => (
+        <div 
+          class={`bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col sm:flex-row items-center sm:items-start gap-6
+            ${index === 0 ? "col-span-2 h-80" : "h-52"}`}
+          >
+          
+          <figure class="shrink-0 w-auto h-full overflow-hidden">
+            <Image 
+              src={member.img} 
+              alt={member.name} 
+              class="w-full h-full object-cover"
+              onerror="this.src='https://ui-avatars.com/api/?name=User&background=random'"
+            />
+          </figure>
+
+          <div class="flex flex-col jus text-center sm:text-left">
+            <h3 class={`font-bold text-secondary uppercase mb-1 ${index === 0 ? "text-3xl": "text-xl"}`}>{member.name}</h3>
+            <p class={`font-bold text-primary uppercase tracking-wider mb-3 ${index === 0 ? "text-sm": "text-xs"}`}>{member.role}</p>
+            
+            <div class={`text-gray-600 space-y-1 ${index === 0 ? "text-base": "text-sm"} `}>
+              {member.bio.map(line => (
+                <p set:html={line.replace(/(<strong>|<\/strong>)/g, '')}></p>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

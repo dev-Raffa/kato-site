@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+import quemSomosImg from '../assets/quem-somos.webp';
+---
+
+<section id="kato" class={`py-20 md:py-32 bg-[#f9f9f9] bg-[url("../assets/bg-section.webp")]`}>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row items-center gap-12">
+            
+            <div class="w-full md:w-1/2 flex justify-center">
+                {quemSomosImg ? (
+                    <Image src={quemSomosImg} alt="Equipe Kato Ambiental" class="w-auto md:w-full h-72 object-contain drop-shadow-xl rounded-lg" />
+                ) : (
+                    <div class="w-full h-64 bg-gray-300 rounded-lg flex items-center justify-center text-gray-500">Imagem Quem Somos</div>
+                )}
+            </div>
+
+            <div class="w-full md:w-1/2 text-center md:text-left">
+                <h2 class="text-primary text-lg font-bold uppercase mb-2 tracking-wide">Kato</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                    Soluções Ambientais
+                </h3>
+                
+                <p class="text-gray-600 text-lg leading-relaxed mb-8">
+                    Na <strong>KATO SOLUÇÕES AMBIENTAIS LTDA</strong>, abraçamos uma missão apaixonada pela qualidade e sustentabilidade. 
+                    Nossa equipe altamente qualificada não apenas compreende as necessidades individuais de cada cliente, 
+                    mas também colabora estreitamente com eles para desenvolver soluções ambientais personalizadas e eficazes.
+                </p>
+
+                <a href="#servicos" class="inline-block bg-primary hover:bg-secondary text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-1 uppercase text-sm tracking-wider">
+                    Saiba Mais
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>

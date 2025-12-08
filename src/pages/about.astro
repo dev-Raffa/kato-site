@@ -1,0 +1,90 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import Clients from '../components/Clients.astro';
+import Banner from '../components/about/Banner.astro';
+import Team from '../components/about/Team.astro';
+import CTA from '../components/CTA.astro';
+import SectionImage from '../assets/quem-somos.webp'
+---
+
+<Layout title="Sobre a Kato - Soluções Ambientais">
+    <Banner title="Kato" path="Kato" />
+
+    <section class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-800 flex items-center justify-center gap-2">
+            <span class="text-black">Saiba Mais</span> <span class="text-primary">Sobre Nós</span>
+            <i class="fa-solid fa-leaf text-primary text-xl"></i>
+          </h2>
+        </div>
+
+        <div class="flex flex-col md:flex-row items-center gap-12">
+          <div class="w-full md:w-1/2 flex justify-center">
+             <Image src={SectionImage} alt="Equipe Kato" class="w-auto md:w-full h-52 object-contain drop-shadow-lg rounded-lg" />
+          </div>
+
+          <div class="w-full md:w-1/2 text-gray-600 leading-relaxed space-y-6 text-justify">
+            <p>
+              Na <strong>KATO SOLUÇÕES AMBIENTAIS LTDA</strong>, abraçamos uma missão apaixonada pela qualidade e sustentabilidade. 
+              Nossa equipe altamente qualificada não apenas compreende as necessidades individuais de cada cliente, 
+              mas também colabora estreitamente com eles para desenvolver soluções ambientais personalizadas e eficazes.
+            </p>
+            <p>
+              Oferecemos uma variedade de serviços especializados, desde a avaliação do impacto ambiental até a gestão de resíduos e a revitalização de áreas contaminadas. 
+              Nos orgulhamos de nossa capacidade em obter aprovações rápidas e eficazes dos órgãos reguladores, garantindo que nossos projetos atendam aos mais altos padrões de conformidade e qualidade.
+            </p>
+            <p>
+              Ao escolher a KATO AMBIENTAL, nossos clientes podem ter certeza de que estão fazendo parte de uma iniciativa maior: construir um mundo mais verde e sustentável para as gerações futuras. 
+              Estamos prontos para fazer a diferença. Junte-se a nós nessa jornada de mudança ambiental positiva!
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-0 rounded-xl overflow-hidden shadow-2xl">
+          
+          <div class="bg-primary p-10 text-white relative group overflow-hidden">
+            <i class="fas fa-bullseye absolute -right-6 -bottom-4 text-9xl opacity-10 group-hover:scale-110 transition-transform duration-500"></i>
+            <h3 class="text-2xl font-bold uppercase mb-4 border-b border-white/30 pb-2">Nossa Missão</h3>
+            <p class="text-sm leading-relaxed relative z-10">
+              Promover soluções ambientais inovadoras, de forma segura, responsável e ética, para melhoria da qualidade de vida da sociedade, 
+              promovendo consciência e engajamento, gerando valores, vínculos fortes e de forma duradoura com clientes e parceiros.
+            </p>
+          </div>
+
+          <div class="bg-secondary p-10 text-white relative group overflow-hidden">
+            <i class="fas fa-eye absolute -right-6 -bottom-4 text-9xl opacity-10 group-hover:scale-110 transition-transform duration-500"></i>
+            <h3 class="text-2xl font-bold uppercase mb-4 border-b border-white/30 pb-2">Nossa Visão</h3>
+            <p class="text-sm leading-relaxed relative z-10">
+              Consolidar a nossa atuação como consultoria ambiental de referência. Sendo assim, reconhecida em âmbito nacional, tornando-se autossuficiente.
+            </p>
+          </div>
+
+          <div class="bg-primary p-10 text-white relative group overflow-hidden">
+            <i class="fas fa-gem absolute -right-6 -bottom-4 text-9xl opacity-10 group-hover:scale-110 transition-transform duration-500"></i>
+            <h3 class="text-2xl font-bold uppercase mb-4 border-b border-white/30 pb-2">Nossos Valores</h3>
+            <ul class="text-sm leading-relaxed space-y-2 list-disc pl-4 relative z-10">
+              <li><strong>Comprometimento:</strong> Nossas palavras correspondem a nossa ação;</li>
+              <li><strong>Integridade:</strong> Ética e coerência fazem parte do cotidiano;</li>
+              <li><strong>Inovação:</strong> Estratégias Corporativas;</li>
+              <li><strong>Satisfação do Cliente:</strong> Resultado da empresa.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <Team />
+
+    <Clients />
+
+    <CTA />
+</Layout>

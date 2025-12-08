@@ -1,0 +1,108 @@
+---
+import logoImg from '../assets/logo.webp';
+import seloEureciclo from '../assets/selo-eureciclo.webp';
+import { infoLinks } from '../consts/info-links';
+---
+<header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent py-2">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center">
+            
+            <div class="shrink-0 transition-all duration-300" id="header-logo">
+                <a href="/">
+                    <img src={logoImg.src} alt="Kato Ambiental" class="h-16 w-auto md:h-20 transition-all duration-300" />
+                </a>
+            </div>
+
+            <nav class="hidden md:flex gap-1 items-center">
+                <ul class="flex items-center space-x-1">
+                    <li>
+                        <a href="/" class="text-white hover:text-primary px-4 py-2 uppercase font-semibold text-sm transition-colors">Home</a>
+                    </li>
+                    <li>
+                        <a href="/about" class="text-white hover:text-primary px-4 py-2 uppercase font-semibold text-sm transition-colors">Kato</a>
+                    </li>
+                    
+                    <li class="relative group">
+                        <a href="/servicos" class="text-white hover:text-primary px-4 py-2 uppercase font-semibold text-sm transition-colors flex items-center gap-1">
+                            Serviços <i class="fa-solid fa-angle-down text-xs"></i>
+                        </a>
+                        <ul class="absolute left-0 top-full pt-2 w-64 hidden group-hover:block hover:block">
+                            <div class="bg-primary rounded-b-md shadow-lg py-2">
+                                <li><a href="#" class="block px-4 py-2 text-white hover:bg-white hover:text-primary text-sm border-b border-white/20">Licenças Controladas</a></li>
+                                <li><a href="#" class="block px-4 py-2 text-white hover:bg-white hover:text-primary text-sm border-b border-white/20">Postos de Combustíveis</a></li>
+                                <li><a href="#" class="block px-4 py-2 text-white hover:bg-white hover:text-primary text-sm border-b border-white/20">Consultoria Ambiental</a></li>
+                                <li><a href="#" class="block px-4 py-2 text-white hover:bg-white hover:text-primary text-sm">Licenciamento</a></li>
+                            </div>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="/contato" class="text-white hover:text-primary px-4 py-2 uppercase font-semibold text-sm transition-colors">Contato</a>
+                    </li>
+
+                    <li class="relative group ml-2">
+                        <a href="#" class="text-white hover:text-primary px-3 py-6 transition-colors flex items-center">
+                            <i class="fa-solid fa-circle-info fa-xl border border-transparent rounded-full p-0.5 transition-all"></i>
+                        </a>
+                        
+                        <ul class="absolute right-0 top-full w-[300px] bg-primary hidden group-hover:block hover:block shadow-2xl max-h-[450px] overflow-y-auto custom-scrollbar">
+                            {infoLinks.map(link => (
+                                <li>
+                                    <a href={link.url} class="block px-5 py-3 text-white text-[11px] font-bold uppercase hover:bg-white hover:text-primary border-b border-white/20 leading-tight transition-colors">
+                                        {link.title}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </li>
+
+                    <li>
+                        <figure class="flex items-center justify-center">
+                            <img src={seloEureciclo.src} alt="Kato Ambiental" class="brightness-0 invert h-10 w-auto transition-all duration-300" />
+                        </figure>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="md:hidden">
+                <button class="text-white focus:outline-none">
+                    <i class="fa-solid fa-bars fa-2x"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<style>
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #135234;
+        border-radius: 2px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #0f4229; 
+    }
+</style>
+
+<script>
+    const header = document.getElementById('main-header');
+    const logoImg = document.querySelector('#header-logo img') as HTMLImageElement;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header?.classList.remove('bg-transparent', 'py-2');
+            header?.classList.add('bg-secondary', 'shadow-md', 'py-2'); 
+
+            if(logoImg) logoImg.style.height = '60px'; 
+        } else {
+            header?.classList.add('bg-transparent', 'py-2');
+            header?.classList.remove('bg-secondary', 'shadow-md', 'py-0');
+            if(logoImg) logoImg.style.height = ''; 
+        }
+    });
+</script>

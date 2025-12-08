@@ -1,0 +1,93 @@
+---
+
+const services = [
+  {
+    title: "Licenças para produtos controlados",
+    description: "Na Kato Ambiental, oferecemos suporte completo para obtenção de licenças...",
+    link: "/licencas-produtos-controlados"
+  },
+  {
+    title: "Postos de Combustíveis",
+    description: "Assessoria especializada para regularização e licenciamento de postos...",
+    link: "/postos-combustiveis"
+  },
+  {
+    title: "Consultoria e Assessoria Ambiental",
+    description: "Soluções estratégicas para garantir a conformidade ambiental do seu negócio...",
+    link: "/consultoria-ambiental"
+  },
+  {
+    title: "Licenciamento Ambiental",
+    description: "Conduzimos todo o processo de licenciamento junto aos órgãos competentes...",
+    link: "/licenciamento-ambiental"
+  },
+  {
+    title: "Vistoria do Corpo de Bombeiros",
+    description: "Oferecemos serviços de vistoria e regularização para obtenção do AVCB...",
+    link: "/vistoria-bombeiros"
+  },
+  {
+    title: "Outorgas",
+    description: "Facilitamos a obtenção de outorgas para uso de recursos hídricos...",
+    link: "/outorgas"
+  },
+  {
+    title: "Industriais",
+    description: "Consultoria focada em processos industriais e gestão de resíduos...",
+    link: "/industriais"
+  },
+  {
+    title: "Regularizações",
+    description: "Regularize seu empreendimento e evite multas e sanções ambientais...",
+    link: "/regularizacoes"
+  },
+  {
+    title: "Resíduos e Compostagem",
+    description: "Planos de gerenciamento de resíduos sólidos e projetos de compostagem...",
+    link: "/residuos-compostagem"
+  }
+];
+---
+
+<section id="servicos" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 flex items-center justify-center gap-2">
+        <span class="text-black">Nossos</span> <span class="text-primary">Serviços</span>
+        <i class="fa-solid fa-leaf text-primary text-2xl"></i>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {services.map((service) => (
+        <a 
+          href={service.link} 
+          class="group block bg-white rounded-lg shadow-lg hover:shadow-2xl hover:bg-primary transition-all duration-500 overflow-hidden transform hover:-translate-y-2 border border-gray-100"
+        >
+          <div class="p-8 flex flex-col items-center text-center h-full">
+            
+            <div class="mb-6 w-20 h-20 flex items-center justify-center">
+                <i class="fa-solid fa-seedling text-5xl text-primary group-hover:text-white transition-colors duration-500"></i>
+                
+                </div>
+
+            <h3 class="text-xl font-bold text-gray-700 mb-4 group-hover:text-white transition-colors duration-500 uppercase">
+              {service.title}
+            </h3>
+
+            <p class="text-gray-500 text-sm mb-6 grow group-hover:text-white/90 transition-colors duration-500">
+              {service.description}
+            </p>
+
+            <span class="inline-block border-b-2 border-primary text-primary font-bold text-sm pb-1 group-hover:text-white group-hover:border-white transition-all duration-300">
+              SAIBA MAIS
+            </span>
+
+          </div>
+        </a>
+      ))}
+    </div>
+
+  </div>
+</section>

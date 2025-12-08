@@ -1,0 +1,149 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Banner from '../components/about/Banner.astro';
+import CTA from '../components/CTA.astro';
+
+// Você pode configurar o endpoint do formulário depois (ex: Formspree, Netlify Forms, ou API própria)
+const formAction = "#"; 
+---
+
+<Layout title="Entre em Contato - Kato Soluções Ambientais">
+    <Banner />
+
+    <section class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          
+          <div>
+            <div class="mb-10">
+              <h2 class="text-3xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <span class="text-black">Fale</span> <span class="text-primary">Conosco</span>
+                <i class="fa-solid fa-comments text-primary text-xl"></i>
+              </h2>
+              <p class="text-gray-600 leading-relaxed">
+                Estamos prontos para atender sua empresa. Entre em contato por telefone, e-mail ou preencha o formulário abaixo para solicitar um orçamento ou tirar dúvidas.
+              </p>
+            </div>
+
+            <div class="space-y-8">
+              <div class="flex items-start gap-5">
+                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary shrink-0">
+                  <i class="fa-solid fa-location-dot text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-gray-800 uppercase tracking-wide mb-1">Endereço</h3>
+                  <p class="text-gray-600 text-sm leading-relaxed">
+                    Av. Cel. Fernando Ferreira Leite, 1520 <br>
+                    Centro Profissional Ribeirão Shopping <br>
+                    Sala 1416 - Ribeirão Preto SP <br>
+                    CEP: 14026-020
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-5">
+                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary shrink-0">
+                  <i class="fa-solid fa-phone text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-gray-800 uppercase tracking-wide mb-1">Telefones</h3>
+                  <div class="flex flex-col gap-1 text-sm">
+                    <a href="tel:1639664322" class="text-gray-600 hover:text-primary transition-colors">(16) 3966-4322</a>
+                    <a href="https://wa.me/5516991185861" target="_blank" class="text-gray-600 hover:text-green-600 transition-colors flex items-center gap-2">
+                      <i class="fa-brands fa-whatsapp"></i> (16) 99118-5861
+                    </a>
+                    <a href="https://wa.me/5516994404533" target="_blank" class="text-gray-600 hover:text-green-600 transition-colors flex items-center gap-2">
+                      <i class="fa-brands fa-whatsapp"></i> (16) 99440-4533
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-5">
+                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary shrink-0">
+                  <i class="fa-solid fa-envelope text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-gray-800 uppercase tracking-wide mb-1">E-mail</h3>
+                  <p class="text-sm">
+                    <a href="mailto:contato@katoambiental.com" class="text-gray-600 hover:text-primary transition-colors">
+                      contato@katoambiental.com
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-gray-50 p-8 rounded-2xl shadow-sm border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-800 mb-6 uppercase border-b pb-4">Envie uma Mensagem</h3>
+            
+            <form action={formAction} method="POST" class="space-y-5">
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                  <label for="nome" class="block text-xs font-bold text-gray-500 uppercase mb-1 ml-1">Nome</label>
+                  <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required
+                    class="w-full bg-white border border-gray-300 text-gray-700 py-3 px-4 rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                  />
+                </div>
+                <div>
+                  <label for="telefone" class="block text-xs font-bold text-gray-500 uppercase mb-1 ml-1">Telefone</label>
+                  <input type="tel" id="telefone" name="telefone" placeholder="(DDD) 00000-0000"
+                    class="w-full bg-white border border-gray-300 text-gray-700 py-3 px-4 rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label for="email" class="block text-xs font-bold text-gray-500 uppercase mb-1 ml-1">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="seu@email.com" required
+                  class="w-full bg-white border border-gray-300 text-gray-700 py-3 px-4 rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                />
+              </div>
+
+              <div>
+                <label for="assunto" class="block text-xs font-bold text-gray-500 uppercase mb-1 ml-1">Assunto</label>
+                <select id="assunto" name="assunto" class="w-full bg-white border border-gray-300 text-gray-700 py-3 px-4 rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors">
+                  <option value="" disabled selected>Selecione um assunto</option>
+                  <option value="orcamento">Orçamento</option>
+                  <option value="licenciamento">Licenciamento Ambiental</option>
+                  <option value="duvida">Dúvidas Gerais</option>
+                  <option value="trabalhe-conosco">Trabalhe Conosco</option>
+                  <option value="outro">Outro</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="mensagem" class="block text-xs font-bold text-gray-500 uppercase mb-1 ml-1">Mensagem</label>
+                <textarea id="mensagem" name="mensagem" rows="4" placeholder="Como podemos ajudar?" required
+                  class="w-full bg-white border border-gray-300 text-gray-700 py-3 px-4 rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none"
+                ></textarea>
+              </div>
+
+              <button type="submit" class="w-full bg-secondary hover:bg-primary text-white font-bold py-4 rounded shadow-lg transform hover:-translate-y-1 transition-all duration-300 uppercase tracking-widest text-sm">
+                Enviar Mensagem
+              </button>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="w-full flex justify-center h-[450px]">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.943615410145!2d-47.81977692383827!3d-21.20929288048566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94b9be57a5555555%3A0x6b6f70987f2e1c0!2sCentro%20Profissional%20Ribeir%C3%A3o%20Shopping!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" 
+        width="100%" 
+        height="100%" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade"
+        class="grayscale max-w-7xl p-2 rounded-2xl hover:grayscale-0 transition-all duration-700"
+      ></iframe>
+    </div>
+
+</Layout>

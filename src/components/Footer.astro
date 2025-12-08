@@ -1,0 +1,104 @@
+---
+import logo from '../assets/logo.webp';
+import seloEureciclo from '../assets/selo-eureciclo.webp';
+---
+
+<footer class="relative bg-[#1a1a1a] text-white pt-16 pb-8 border-t border-white/10">
+    <div class="absolute inset-0 bg-[url('/bg-footer.webp')] bg-cover bg-center opacity-20 pointer-events-none mix-blend-overlay"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            
+            <div class="flex flex-col items-center md:items-start gap-6">
+                <div class="w-48 aspect-video h-auto bg-white/10 rounded p-2 flex items-center justify-center">
+                    <img src={logo.src} alt="Kato Ambiental" class="h-16 w-auto md:h-20 transition-all duration-300" />    
+                </div>
+                
+                <div class="w-48 aspect-video h-auto bg-white/10 rounded p-2 flex items-center justify-center">
+                    <img src={seloEureciclo.src} alt="Kato Ambiental" class="brightness-0 invert h-12 w-auto md:h-16 transition-all duration-300" />    
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-lg font-bold text-primary mb-6 uppercase tracking-wider border-b-2 border-primary inline-block pb-1">
+                    Navegação
+                </h3>
+                <nav>
+                    <ul class="space-y-3">
+                        <li><a href="/" class="text-gray-300 hover:text-primary transition-colors text-sm uppercase">Home</a></li>
+                        <li><a href="/about" class="text-gray-300 hover:text-primary transition-colors text-sm uppercase">Kato</a></li>
+                        <li><a href="/servicos" class="text-gray-300 hover:text-primary transition-colors text-sm uppercase">Serviços</a></li>
+                        <li><a href="/contato" class="text-gray-300 hover:text-primary transition-colors text-sm uppercase">Contato</a></li>   
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="lg:col-span-1">
+                <h3 class="text-lg font-bold text-primary mb-6 uppercase tracking-wider border-b-2 border-primary inline-block pb-1">
+                    Contato
+                </h3>
+                <address class="not-italic space-y-4 text-sm text-gray-300">
+                    <p class="flex items-start gap-3">
+                        <i class="fa-solid fa-location-dot mt-1 text-primary"></i>
+                        <span>
+                            Av. Cel. Fernando Ferreira Leite, 1520 <br> 
+                            Centro Profissional Ribeirão Shopping <br>
+                            Sala 1416 - Ribeirão Preto SP <br>
+                            CEP: 14026-020
+                        </span>
+                    </p>
+                    
+                    <p class="flex items-center gap-3">
+                        <i class="fa-solid fa-phone text-primary"></i>
+                        <a href="tel:1639664322" class="hover:text-white transition-colors">(16) 3966-4322</a>
+                    </p>
+
+                    <p class="flex items-center gap-3">
+                        <i class="fa-brands fa-whatsapp text-primary"></i>
+                        <a href="https://wa.me/5516991185861" target="_blank" class="hover:text-white transition-colors">(16) 99118-5861</a>
+                    </p>
+
+                    <p class="flex items-center gap-3">
+                        <i class="fa-brands fa-whatsapp text-primary"></i>
+                        <a href="https://wa.me/5516994404533" target="_blank" class="hover:text-white transition-colors">(16) 99440-4533</a>
+                    </p>
+
+                    <p class="flex items-center gap-3">
+                        <i class="fa-solid fa-envelope text-primary"></i>
+                        <a href="mailto:contato@katoambiental.com" class="hover:text-white transition-colors">contato@katoambiental.com</a>
+                    </p>
+
+                    <a href="#contato" class="inline-block mt-4 bg-primary hover:bg-secondary text-white font-bold py-2 px-6 rounded text-xs uppercase tracking-wide transition-all shadow-md hover:shadow-lg">
+                        Envie sua mensagem
+                    </a>
+                </address>
+            </div>
+
+            <div>
+                <h3 class="text-lg font-bold text-primary mb-6 uppercase tracking-wider border-b-2 border-primary inline-block pb-1">
+                    Siga-nos!
+                </h3>
+                <div class="flex gap-4">
+                    <a href="https://www.instagram.com/kato_ambiental/" target="_blank" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary hover:scale-110 transition-all duration-300 group">
+                        <i class="fa-brands fa-instagram text-xl text-white group-hover:text-white"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/kato-solu%C3%A7%C3%B5es-ambientais-ltda/" target="_blank" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#0077b5] hover:scale-110 transition-all duration-300 group">
+                        <i class="fa-brands fa-linkedin-in text-xl text-white group-hover:text-white"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="bg-primary py-4 mt-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white font-medium">
+            <p>Copyright © Kato. (Lei 9610 de 19/02/1998)</p>
+            
+            <div class="flex items-center gap-4 opacity-80">
+                <span class="flex items-center gap-1"><i class="fa-brands fa-html5 text-lg"></i> W3C</span>
+                <span class="flex items-center gap-1"><i class="fa-brands fa-css3-alt text-lg"></i> W3C</span>
+                </div>
+        </div>
+    </div>
+</footer>

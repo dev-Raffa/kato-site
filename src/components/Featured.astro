@@ -1,0 +1,43 @@
+---
+const features = [
+    { title: "Assessoria Ambiental", img: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=500&q=80" },
+    { title: "Corte de Árvore Nativa Isolada", img: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=500&q=80" },
+    { title: "Laudo de Estanqueidade", img: "https://images.unsplash.com/photo-1581092921461-eab62e97a782?auto=format&fit=crop&w=500&q=80" },
+    { title: "Licença Ambiental de Instalação", img: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=500&q=80" }
+];
+---
+
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800">
+                Produtos em <span class="text-primary">destaque</span>
+            </h2>
+            <div class="w-20 h-1 bg-primary mt-2 rounded-full"></div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {features.map(item => (
+                <a href="#" class="group relative block aspect-square overflow-hidden rounded-lg shadow-md cursor-pointer">
+                    <img 
+                        src={item.img} 
+                        alt={item.title} 
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    
+                    <div class="absolute inset-0 bg-linear-to-t from-primary/90 to-transparent opacity-90 transition-opacity duration-300"></div>
+
+                    <div class="absolute bottom-0 left-0 w-full p-6 text-center transform transition-transform duration-300 translate-y-2 group-hover:translate-y-0">
+                        <div class="h-12 w-full flex items-center justify-center">
+                             <h3 class="text-white font-bold text-lg leading-tight group-hover:text-white transition-colors uppercase shadow-black drop-shadow-md">
+                                {item.title}
+                            </h3>
+                        </div>
+                        
+                        <div class="w-0 group-hover:w-full h-0.5 bg-white mt-2 mx-auto transition-all duration-500"></div>
+                    </div>
+                </a>
+            ))}
+        </div>
+    </div>
+</section>
