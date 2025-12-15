@@ -2,6 +2,7 @@
 import logoImg from '../assets/logo.webp';
 import seloEureciclo from '../assets/selo-eureciclo.webp';
 import { infoLinks } from '../consts/info-links';
+import { servicesData } from '../data/services';
 import MobileNavigation from './Layout/MobileNavigation.astro';
 ---
 <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent py-2">
@@ -24,15 +25,22 @@ import MobileNavigation from './Layout/MobileNavigation.astro';
                     </li>
                     
                     <li class="relative group">
-                        <a href="/servicos" class="text-white hover:text-primary px-4 py-2 uppercase font-semibold text-sm transition-colors flex items-center gap-1">
-                            Serviços <i class="fa-solid fa-angle-down text-xs"></i>
+                        <a href="/servicos" class="text-white hover:text-primary px-4 py-2 uppercase font-semibold text-sm transition-colors flex items-center gap-1 tracking-wide">
+                            Serviços <i class="fa-solid fa-angle-down text-[10px] ml-1"></i>
                         </a>
-                        <ul class="absolute left-0 top-full pt-2 w-64 hidden group-hover:block hover:block">
-                            <div class="bg-primary rounded-b-md shadow-lg py-2">
-                                <li><a href="#" class="block px-4 py-2 text-white hover:bg-white hover:text-primary text-sm border-b border-white/20">Licenças Controladas</a></li>
-                                <li><a href="#" class="block px-4 py-2 text-white hover:bg-white hover:text-primary text-sm border-b border-white/20">Postos de Combustíveis</a></li>
-                                <li><a href="#" class="block px-4 py-2 text-white hover:bg-white hover:text-primary text-sm border-b border-white/20">Consultoria Ambiental</a></li>
-                                <li><a href="#" class="block px-4 py-2 text-white hover:bg-white hover:text-primary text-sm">Licenciamento</a></li>
+                        
+                        <ul class="absolute left-0 top-full pt-4 w-72 hidden group-hover:block hover:block">
+                            <div class="bg-primary shadow-xl rounded-b-md py-2 max-h-[80vh] overflow-y-auto custom-scrollbar">
+                                {servicesData.map((service) => (
+                                    <li>
+                                        <a 
+                                            href={`/servicos/${service.slug}`} 
+                                            class="block px-5 py-3 text-white text-[13px] font-bold uppercase hover:bg-white hover:text-primary border-b border-white/20 last:border-0 transition-colors leading-tight"
+                                        >
+                                            {service.title}
+                                        </a>
+                                    </li>
+                                ))}
                             </div>
                         </ul>
                     </li>

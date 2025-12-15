@@ -1,0 +1,114 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Banner from '../../components/about/Banner.astro';
+import { servicesData } from '../../data/services';
+import CTA from '../../components/CTA.astro';
+
+export async function getStaticPaths() {
+  return servicesData.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+
+const otherServices = servicesData
+  .filter(s => s.slug !== service.slug) 
+  .map(s => ({ 
+    title: s.title, 
+    url: `/servicos/${s.slug}`
+  }));
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": service.title,
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Kato Soluções Ambientais",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ribeirão Preto",
+      "addressRegion": "SP"
+    }
+  },
+  "description": service.description,
+  "areaServed": "Ribeirão Preto e Região",
+  "url": Astro.url.href
+};
+---
+
+<Layout title={`${service.title} - Kato Soluções Ambientais`}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+    
+  <Banner title={service.title} path="Serviços" />
+
+    <section class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col lg:flex-row gap-12">
+          
+          <article class="w-full lg:w-3/4">
+            
+            <header class="mb-8">
+              <span class="block text-primary font-bold uppercase tracking-widest text-xs md:text-sm mb-2">
+                SAIBA MAIS SOBRE
+              </span>
+              
+              <h1 class="text-3xl md:text-5xl font-extrabold text-gray-800 mb-6 leading-tight">
+                {service.title}
+              </h1>
+              
+              <div class="w-4/5 h-1.5 bg-linear-to-r from-primary to-transparent rounded-full"></div>
+            </header>
+
+            <div class="prose prose-lg max-w-none text-gray-600 text-justify
+                        leading-loose 
+                        prose-headings:font-bold prose-headings:text-gray-800
+                        prose-h3:text-secondary prose-h3:text-2xl prose-h3:mt-12 prose-h3:mb-6
+                        prose-h4:text-primary prose-h4:text-xl prose-h4:mt-8 prose-h4:mb-4
+                        prose-p:mb-6 
+                        prose-ul:list-disc prose-ul:pl-6 prose-ul:mb-8
+                        prose-li:mb-3 prose-li:marker:text-primary
+                        prose-strong:text-gray-900 prose-strong:font-extrabold">
+              
+              <div set:html={service.content} />
+            </div>
+          </article>
+
+          <aside class="w-full lg:w-1/4">
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md border border-gray-100 sticky top-24">
+              <h3 class="text-xl font-bold text-gray-800 mb-6 border-b-2 border-primary inline-block pb-1">
+                Outros Serviços
+              </h3>
+              <nav>
+                <ul class="space-y-2">
+                  {otherServices.map(item => (
+                    <li>
+                      <a 
+                        href={item.url} 
+                        class="block text-sm py-3 px-4 rounded-md transition-all duration-300 border-l-4 border-transparent text-gray-600 hover:bg-white hover:border-primary/50 hover:text-primary hover:shadow-sm"
+                      >
+                        {item.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+
+              <div class="mt-8 bg-secondary rounded-lg p-6 text-center text-white">
+                <i class="fa-solid fa-headset text-4xl mb-4 text-primary"></i>
+                <h4 class="font-bold text-lg mb-2">Precisa de ajuda?</h4>
+                <p class="text-sm opacity-90 mb-4">Fale com nossos engenheiros especialistas.</p>
+                <a href="https://wa.me/5516991185861" target="_blank" class="block w-full bg-[#25D366] hover:bg-white hover:text-[#25D366] text-white font-bold py-2 px-4 rounded transition-colors">
+                  WhatsApp
+                </a>
+              </div>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+</Layout>
