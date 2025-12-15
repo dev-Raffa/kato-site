@@ -93,7 +93,7 @@ export const servicesData: ServiceData[] = [
   {
     slug: "consultoria-assessoria-ambiental",
     title: "Consultoria e Assessoria Ambiental",
-    description: "Consultoria ambiental contínua em Ribeirão Preto. Gestão de condicionantes, prevenção de multas e suporte técnico especializado.",
+    description: "Consultoria ambiental contínua. Gestão de condicionantes, prevenção de multas e suporte técnico especializado.",
     content: `
       <h3>Por que ter uma Assessoria Contínua?</h3>
       <p class="mb-4">A legislação ambiental muda constantemente. Ter a Kato Ambiental como parceira significa ter um departamento ambiental terceirizado, focado em manter seu negócio em conformidade, prevenindo multas e embargos.</p>
