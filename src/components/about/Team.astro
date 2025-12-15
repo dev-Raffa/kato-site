@@ -3,10 +3,7 @@ import MarianaImg from '../../assets/team/mariana.jpg'
 import ViniciusImg from '../../assets/team/vinncius.png'
 import VicImg from '../../assets/team/victoria.webp'
 import MuriloImg from '../../assets/team/murilo.webp'
-import GabiImg from '../../assets/team/gabi.webp'
 import EduardoImg from '../../assets/team/eduardo.webp'
-import WesleyImg from '../../assets/team/wesley.webp'
-import AngeloImg from '../../assets/team/angelo.webp'
 import AnaBeaImg from '../../assets/team/anabea.webp'
 import Image from 'astro/components/Image.astro'
 
@@ -64,11 +61,11 @@ const team = [
   {
     name: "Talia Peres",
     role: "Analista Ambiental",
-    img: AngeloImg,
+    // img: AngeloImg,
     bio: [
       "Bacharel em Ciências Biológicas pela Faculdade Estadual  Paulista - UNESP",
       "Bolsista de iniciação científica CNPq.",
-      "Análise de licenciamento ambiental, gestão do programa  Selo Verde municipal, análise de Planos de Gerenciamento  de Resíduos Sólidos (PGRS), promoção de ações de educação  ambiental.",
+      "Análise de licenciamento ambiental, gestão do programa Selo Verde municipal, análise de Planos de Gerenciamento de Resíduos Sólidos (PGRS), promoção de ações de educação ambiental.",
       "Atuando na Área Ambiental desde 2021."
     ]
   },
@@ -98,15 +95,15 @@ const team = [
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
       {team.map((member, index) => (
         <div 
-          class={`bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col sm:flex-row items-center sm:items-start gap-6 ${index === 0 ? "sm:col-span-2 sm:h-80" : "sm:h-56"}`}>
+          class={`bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col sm:flex-row items-center sm:items-start gap-6 ${index === 0 ? "sm:col-span-2 sm:h-80" : "sm:h-72"}`}>
           
-          <figure class={`shrink-0 h-auto overflow-hidden ${index === 0 ? "w-44": "w-44 sm:w-36"}`}>
-            <Image 
+          <figure class={`shrink-0 h-auto overflow-hidden ${index === 0 ? "w-44": "w-44 sm:w-40"}`}>  
+            {member.img && <Image 
               src={member.img} 
               alt={member.name} 
               class="w-full h-full object-cover"
               onerror="this.src='https://ui-avatars.com/api/?name=User&background=random'"
-            />
+            />}
           </figure>
 
           <div class="flex flex-col jus text-center sm:text-left">
