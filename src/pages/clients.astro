@@ -1,0 +1,46 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import { clients } from "../data/clients";
+import Banner from "../components/about/Banner.astro";
+import CTA from "../components/CTA.astro";
+---
+
+<Layout title="Nossos Clientes - Kato Soluções Ambientais">
+    <Banner title="Nossos Clientes" path="Clientes" />
+
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2
+                    class="text-3xl font-bold text-gray-800 flex items-center justify-center gap-2 mb-4"
+                >
+                    <span class="text-black">Nossos</span>
+                    <span class="text-primary">Clientes</span>
+                    <i class="fa-solid fa-leaf text-primary text-xl"></i>
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                    Valorizamos cada parceria, construindo juntos soluções
+                    sustentáveis e duradouras para um futuro melhor.
+                </p>
+            </div>
+
+            <div
+                class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-12"
+            >
+                {
+                    clients.map((client) => (
+                        <div class="flex items-center justify-center p-6 bg-gray-50 rounded-lg hover:shadow-lg hover:scale-120 transition-all duration-300 group min-h-[160px]">
+                            <Image
+                                src={client.logo}
+                                alt={client.name}
+                                class="max-h-24 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+                            />
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+    <CTA />
+</Layout>
