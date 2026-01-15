@@ -33,8 +33,8 @@ export const servicesData: ServiceData[] = [
           </ul>
           <p><strong>Documentos envolvidos:</strong></p>
           <ul class="list-disc pl-5 mt-1 space-y-1">
-            <li>CRC – Certificado de Registro Cadastral</li>
-            <li>CLF – Certificado de Licença de Funcionamento</li>
+            <li>CRC - Certificado de Registro Cadastral</li>
+            <li>CLF - Certificado de Licença de Funcionamento</li>
           </ul>
         </div>
 
@@ -160,7 +160,7 @@ export const servicesData: ServiceData[] = [
         <li>Obras hidráulicas como canalizações, barragens e travessias.</li>
       </ul>
 
-      <p class="mt-4"><strong>Atuação no DAEE:</strong> Realizamos os estudos hidrológicos, testes de bombeamento e toda a tramitação junto ao Departamento de Águas e Energia Elétrica (DAEE) em São Paulo.</p>
+      <p class="mt-4"><strong>Atuação na SP Águas:</strong> Realizamos os estudos hidrológicos, testes de bombeamento e toda a tramitação junto a Agência de Águas do Estado de São Paulo (SP Águas).</p>
     `,
   },
   {
@@ -190,6 +190,7 @@ export const servicesData: ServiceData[] = [
 
       <h3>Principais Serviços de Regularização:</h3>
       <ul class="list-disc pl-5 mt-4 space-y-2">
+        <li><strong>REURB:</strong> Regularização Fundiária Urbana para núcleos urbanos informais, garantindo a conformidade jurídica e ambiental.</li>
         <li><strong>CAR (Cadastro Ambiental Rural):</strong> Inscrição obrigatória e retificação de áreas de reserva legal e APP.</li>
         <li><strong>PRA (Programa de Regularização Ambiental):</strong> Projetos de recuperação de áreas degradadas (PRAD) e compensação ambiental.</li>
         <li><strong>Defesas Administrativas:</strong> Elaboração de defesas técnicas robustas contra autos de infração e multas da Polícia Ambiental ou CETESB.</li>
@@ -210,7 +211,7 @@ export const servicesData: ServiceData[] = [
         <li><strong>PGRS:</strong> Elaboração e implementação do Plano de Gerenciamento de Resíduos Sólidos, focando em redução, reuso e reciclagem.</li>
         <li><strong>Compostagem:</strong> Projetos técnicos para implementação de pátios de compostagem, transformando resíduos orgânicos em adubo rico e reduzindo custos com aterro sanitário.</li>
         <li><strong>MTR (Manifesto de Transporte de Resíduos):</strong> Gestão completa do sistema SIGOR/SINIR para garantir a rastreabilidade legal dos seus resíduos.</li>
-        <li><strong>Logística Reversa:</strong> Estruturação de sistemas para o retorno de embalagens e produtos pós-consumo.</li>
+        <li><strong>Logística Reversa (Parceria EuReciclo):</strong> Através de nossa parceria com a EuReciclo (maior empresa do país no setor), prospectamos empresas e viabilizamos a adesão aos planos de logística reversa seguindo rigorosamente as normas da CETESB.</li>
       </ul>
     `,
   }

@@ -1,0 +1,48 @@
+---
+import { regionsData } from '../data/regions';
+---
+
+<div class="mt-16 pt-10 border-t border-gray-200">
+  <h3 class="text-2xl font-bold text-gray-800 mb-8 uppercase flex items-center gap-2">
+    <i class="fa-solid fa-map-location-dot text-primary"></i>
+    Regiões de Atendimento
+  </h3>
+
+  <div class="space-y-3">
+    {regionsData.map((region) => (
+      <details class="group bg-gray-50 rounded-lg border border-gray-200 open:border-primary/50 open:bg-white open:shadow-md transition-all duration-300">
+        
+        <summary class="flex items-center justify-between p-4 cursor-pointer select-none">
+          <div class="flex items-center gap-3">
+            <span class="bg-secondary text-white text-xs font-bold px-2 py-1 rounded uppercase w-8 text-center">
+              {region.uf}
+            </span>
+            <span class="font-bold text-gray-700 group-hover:text-primary transition-colors">
+              {region.name}
+            </span>
+          </div>
+          
+          <span class="text-gray-400 group-open:rotate-180 group-open:text-primary transition-transform duration-300">
+            <i class="fa-solid fa-chevron-down"></i>
+          </span>
+        </summary>
+
+        <div class="p-4 pt-0 border-t border-gray-100 mt-2">
+          <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-2">
+            {region.cities.map((city) => (
+              <li class="flex items-center gap-2 text-xs text-gray-600 hover:text-primary transition-colors cursor-default">
+                <i class="fa-solid fa-location-dot text-[10px] text-gray-300"></i>
+                {city}
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+      </details>
+    ))}
+  </div>
+
+  <p class="text-xs text-gray-400 mt-6 text-center italic">
+    * Atendemos também outras localidades sob consulta.
+  </p>
+</div>

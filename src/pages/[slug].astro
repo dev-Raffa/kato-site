@@ -1,0 +1,310 @@
+---
+import Layout from '../layouts/Layout.astro'; 
+import { infosData } from '../data/infos'; 
+import Banner from '../components/about/Banner.astro';
+import ServiceRegions from '../components/ServiceRegions.astro';
+
+export async function getStaticPaths() {
+  return infosData.map((info) => ({
+    params: { slug: info.slug },
+    props: { info },
+  }));
+}
+
+const { info } = Astro.props;
+
+const otherPosts = infosData.filter(i => i.slug !== info.slug);
+
+// 2. Função para calcular relevância baseada em tags
+const getRelevance = (item: typeof info) => {
+    if (!info.tags || !item.tags) return 0;
+    // Conta quantas tags em comum existem
+    return item.tags.filter(tag => info.tags!.includes(tag)).length;
+};
+
+// 3. Ordena por relevância e pega os 3 primeiros
+const relatedPosts = otherPosts
+    .sort((a, b) => getRelevance(b) - getRelevance(a))
+    .slice(0, 3);
+
+// --- SCHEMA JSON-LD ---
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": info.title,
+  "description": info.description,
+  "image": info.images && info.images.length > 0 ? info.images : [],
+  "author": {
+    "@type": "Organization",
+    "name": "Kato Soluções Ambientais"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": Astro.url.href
+  }
+};
+---
+
+<Layout title={`${info.title} - Kato Soluções Ambientais`}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+
+  <main>
+    <Banner />
+    
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row gap-12">
+            
+            <article class="w-full lg:w-3/4">
+                
+                <h1 class="text-3xl md:text-4xl font-extrabold text-secondary mb-4">
+                    {info.title}
+                </h1>
+
+                {info.tags && (
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        {info.tags.map(tag => (
+                            <span class="bg-gray-100 text-gray-600 text-xs font-semibold px-2.5 py-0.5 rounded border border-gray-200">
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
+                )}
+                
+                {info.images && info.images.length > 0 && (
+                    <div class="mb-10">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            {info.images.map((img, index) => (
+                                <div class={`rounded-lg overflow-hidden shadow-sm border border-gray-100 h-48 sm:h-40 group relative`}>
+                                    <img 
+                                        src={img} 
+                                        alt={`${info.title} - Destaque ${index + 1}`} 
+                                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                                        loading="lazy"
+                                    />
+                                    <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
+                                </div>
+                            ))}
+                        </div>
+                        <p class="text-xs text-gray-400 mt-2 italic text-right">Imagens ilustrativas</p>
+                    </div>
+                )}
+
+                <div class="conteudo-dinamico">
+                    <div set:html={info.content} />
+                </div>
+                <div class="mt-12 bg-gray-50 border-l-4 border-primary p-6 md:p-8 rounded-r-lg shadow-sm">
+                    <h2 class="text-xl font-bold text-gray-800 uppercase mb-2">
+                        Precisa de <span class="text-primary">Ajuda Técnica?</span>
+                    </h2>
+                    <p class="text-gray-600 mb-4 text-sm md:text-base">
+                        Nossa equipe está pronta para analisar o seu caso específico e oferecer a solução mais econômica e segura.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+                        <a href="tel:1639664322" class="text-lg font-bold text-gray-800 hover:text-primary transition-colors">
+                            <i class="fa-solid fa-phone text-primary mr-2"></i> (16) 3966-4322
+                        </a>
+                        <span class="hidden sm:inline text-gray-300">|</span>
+                        <a href="/contato" class="text-primary font-bold hover:underline flex items-center">
+                            Solicitar Orçamento <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mt-16 pt-10 border-t border-gray-200">
+                    <h3 class="text-xl font-bold text-secondary mb-6 flex items-center">
+                        <i class="fa-solid fa-bookmark mr-2 text-primary"></i> Veja Também
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {relatedPosts.map(post => (
+                            <a href={`/informacoes/${post.slug}`} class="flex flex-col bg-white rounded-lg shadow-sm hover:shadow-md transition-all border border-gray-100 hover:border-primary/30 group h-full">
+                                <div class="h-32 w-full bg-gray-200 rounded-t overflow-hidden relative">
+                                    {post.images && post.images[0] ? (
+                                        <img src={post.images[0]} class="w-full h-full object-cover" alt={post.title} />
+                                    ) : (
+                                        <div class="w-full h-full flex items-center justify-center text-gray-400 bg-gray-100"><i class="fa-solid fa-image fa-2x"></i></div>
+                                    )}
+                                    {post.tags && post.tags[0] && (
+                                        <span class="absolute bottom-0 left-0 bg-primary text-white text-[10px] px-2 py-1 uppercase font-bold">
+                                            {post.tags[0]}
+                                        </span>
+                                    )}
+                                </div>
+                                <div class="p-4 flex flex-col flex-grow">
+                                    <h4 class="text-sm font-bold text-gray-700 group-hover:text-primary uppercase transition-colors line-clamp-2 mb-2">
+                                        {post.title}
+                                    </h4>
+                                    <p class="text-xs text-gray-500 line-clamp-3 mb-4 flex-grow">
+                                        {post.description}
+                                    </p>
+                                    <span class="text-xs text-primary font-bold mt-auto group-hover:underline">Ler mais &raquo;</span>
+                                </div>
+                            </a>
+                        ))}
+                    </div>
+                </div>
+
+                <div class="mt-16">
+                    <ServiceRegions />
+                </div>
+            
+            </article>
+
+            <aside class="w-full lg:w-1/4 space-y-8">
+                
+                <a href="/contato" class="block w-full bg-secondary hover:bg-primary text-white text-center font-bold py-4 rounded shadow-lg transform hover:-translate-y-1 transition-all uppercase tracking-widest text-sm border-b-4 border-green-900 hover:border-green-700">
+                    Solicite um Orçamento
+                </a>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                    <h3 class="text-base font-bold text-white bg-secondary p-4 text-center uppercase tracking-wide">
+                        Outros Serviços
+                    </h3>
+                    <nav class="max-h-[600px] overflow-y-auto custom-scrollbar">
+                        <ul class="divide-y divide-gray-100">
+                            {otherPosts.map(link => (
+                                <li>
+                                    <a 
+                                        href={`/${link.slug}`} 
+                                        class="block px-4 py-3 text-xs font-medium text-gray-600 hover:bg-gray-50 hover:text-primary hover:pl-5 transition-all duration-300"
+                                    >
+                                        {link.title}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 text-center">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Fale Conosco</h3>
+                    
+                    <div class="flex flex-col gap-3 text-sm">
+                        <a href="tel:1639664322" class="flex items-center justify-center gap-2 text-gray-600 hover:text-primary font-bold transition-colors">
+                            <i class="fa-solid fa-phone"></i> (16) 3966-4322
+                        </a>
+                        <a href="https://wa.me/5516991185861" target="_blank" class="flex items-center justify-center gap-2 text-gray-600 hover:text-[#25D366] font-bold transition-colors">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> (16) 99118-5861
+                        </a>
+                        <a href="https://wa.me/5516994404533" target="_blank" class="flex items-center justify-center gap-2 text-gray-600 hover:text-[#25D366] font-bold transition-colors">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> (16) 99440-4533
+                        </a>
+                        <div class="border-t border-gray-200 pt-3 mt-1">
+                             <a href="mailto:contato@katoambiental.com" class="text-gray-500 hover:text-primary text-xs break-all">
+                                contato@katoambiental.com
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="bg-gray-100 py-6 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-[10px] text-gray-500 leading-relaxed">
+                O conteúdo do texto desta página é de direito reservado. Sua reprodução, parcial ou total, mesmo citando nossos links, 
+                é proibida sem a autorização do autor. Crime de violação de direito autoral – artigo 184 do Código Penal – 
+                <a href="http://www.planalto.gov.br/Ccivil_03/Leis/L9610.htm" target="_blank" rel="nofollow" class="underline hover:text-gray-800">Lei 9610/98</a>.
+            </p>
+        </div>
+    </div>
+
+  </main>
+</Layout>
+
+<style>
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f9fafb; 
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background-color: #d1d5db; 
+        border-radius: 20px;
+        border: 2px solid #f9fafb;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background-color: #9ca3af; 
+    }
+</style>
+
+<style is:global>
+  .conteudo-dinamico {
+    color: #374151;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+  
+  .conteudo-dinamico h2, .conteudo-dinamico h3 {
+    color: #4CBC7D;
+    font-weight: 800;
+    font-size: 1.75rem;
+    margin-top: 3rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #A2BA3A;
+  }
+
+  .conteudo-dinamico p {
+    margin-bottom: 1.5rem;
+    text-align: justify;
+  }
+
+  .conteudo-dinamico strong {
+    color: #111827;
+    font-weight: 700;
+  }
+
+  .conteudo-dinamico ul {
+    list-style: none;
+    margin-bottom: 2rem;
+    padding-left: 0.5rem;
+  }
+
+  .conteudo-dinamico ul li {
+    position: relative;
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+  }
+
+  .conteudo-dinamico ul li::before {
+    content: "•";
+    color: #4CBC7D;
+    font-weight: bold;
+    font-size: 1.5rem;
+    position: absolute;
+    left: 0;
+    top: -0.2rem;
+    line-height: 1.5rem;
+  }
+
+  .conteudo-dinamico ol {
+    list-style-type: decimal;
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    color: #135234;
+  }
+  
+  .conteudo-dinamico ol li {
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+  }
+  
+  .conteudo-dinamico ol li::marker {
+    color: #4CBC7D;
+    font-weight: 800;
+  }
+
+  .conteudo-dinamico ol li span, 
+  .conteudo-dinamico ol li p {
+    font-weight: 400;
+    color: #374151;
+    display: inline;
+  }
+</style>
