@@ -118,7 +118,7 @@ const schema = {
                             // Calcula as imagens para os posts relacionados também
                             const relatedImages = getImagesByTags(post.tags);
                             return (
-                                <a href={`/informacoes/${post.slug}`} class="flex flex-col bg-white rounded-lg shadow-sm hover:shadow-md transition-all border border-gray-100 hover:border-primary/30 group h-full">
+                                <a href={`/${post.slug}`} class="flex flex-col bg-white rounded-lg shadow-sm hover:shadow-md transition-all border border-gray-100 hover:border-primary/30 group h-full">
                                     <div class="h-32 w-full bg-gray-200 rounded-t overflow-hidden relative">
                                         <img src={relatedImages[0]} class="w-full h-full object-cover" alt={post.title} />
                                         
