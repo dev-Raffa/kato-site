@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { infosData } from '../data/infos'; 
 import Banner from '../components/about/Banner.astro';
 import ServiceRegions from '../components/ServiceRegions.astro';
+import { getImagesByTags } from '../utils/images-mapper';
 
 export async function getStaticPaths() {
   return infosData.map((info) => ({
@@ -13,27 +14,24 @@ export async function getStaticPaths() {
 
 const { info } = Astro.props;
 
+const displayImages = getImagesByTags(info.tags);
 const otherPosts = infosData.filter(i => i.slug !== info.slug);
 
-// 2. Função para calcular relevância baseada em tags
 const getRelevance = (item: typeof info) => {
     if (!info.tags || !item.tags) return 0;
-    // Conta quantas tags em comum existem
     return item.tags.filter(tag => info.tags!.includes(tag)).length;
 };
 
-// 3. Ordena por relevância e pega os 3 primeiros
 const relatedPosts = otherPosts
     .sort((a, b) => getRelevance(b) - getRelevance(a))
     .slice(0, 3);
 
-// --- SCHEMA JSON-LD ---
 const schema = {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": info.title,
   "description": info.description,
-  "image": info.images && info.images.length > 0 ? info.images : [],
+  "image": displayImages, 
   "author": {
     "@type": "Organization",
     "name": "Kato Soluções Ambientais"
@@ -71,14 +69,15 @@ const schema = {
                     </div>
                 )}
                 
-                {info.images && info.images.length > 0 && (
+                {/* GALERIA ATUALIZADA PARA USAR displayImages */}
+                {displayImages && displayImages.length > 0 && (
                     <div class="mb-10">
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                            {info.images.map((img, index) => (
+                            {displayImages.map((img, index) => (
                                 <div class={`rounded-lg overflow-hidden shadow-sm border border-gray-100 h-48 sm:h-40 group relative`}>
                                     <img 
                                         src={img} 
-                                        alt={`${info.title} - Destaque ${index + 1}`} 
+                                        alt={`${info.title} - Imagem ${index + 1}`} 
                                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
                                         loading="lazy"
                                     />
@@ -86,7 +85,6 @@ const schema = {
                                 </div>
                             ))}
                         </div>
-                        <p class="text-xs text-gray-400 mt-2 italic text-right">Imagens ilustrativas</p>
                     </div>
                 )}
 
@@ -116,31 +114,32 @@ const schema = {
                         <i class="fa-solid fa-bookmark mr-2 text-primary"></i> Veja Também
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {relatedPosts.map(post => (
-                            <a href={`/informacoes/${post.slug}`} class="flex flex-col bg-white rounded-lg shadow-sm hover:shadow-md transition-all border border-gray-100 hover:border-primary/30 group h-full">
-                                <div class="h-32 w-full bg-gray-200 rounded-t overflow-hidden relative">
-                                    {post.images && post.images[0] ? (
-                                        <img src={post.images[0]} class="w-full h-full object-cover" alt={post.title} />
-                                    ) : (
-                                        <div class="w-full h-full flex items-center justify-center text-gray-400 bg-gray-100"><i class="fa-solid fa-image fa-2x"></i></div>
-                                    )}
-                                    {post.tags && post.tags[0] && (
-                                        <span class="absolute bottom-0 left-0 bg-primary text-white text-[10px] px-2 py-1 uppercase font-bold">
-                                            {post.tags[0]}
-                                        </span>
-                                    )}
-                                </div>
-                                <div class="p-4 flex flex-col flex-grow">
-                                    <h4 class="text-sm font-bold text-gray-700 group-hover:text-primary uppercase transition-colors line-clamp-2 mb-2">
-                                        {post.title}
-                                    </h4>
-                                    <p class="text-xs text-gray-500 line-clamp-3 mb-4 flex-grow">
-                                        {post.description}
-                                    </p>
-                                    <span class="text-xs text-primary font-bold mt-auto group-hover:underline">Ler mais &raquo;</span>
-                                </div>
-                            </a>
-                        ))}
+                        {relatedPosts.map(post => {
+                            // Calcula as imagens para os posts relacionados também
+                            const relatedImages = getImagesByTags(post.tags);
+                            return (
+                                <a href={`/informacoes/${post.slug}`} class="flex flex-col bg-white rounded-lg shadow-sm hover:shadow-md transition-all border border-gray-100 hover:border-primary/30 group h-full">
+                                    <div class="h-32 w-full bg-gray-200 rounded-t overflow-hidden relative">
+                                        <img src={relatedImages[0]} class="w-full h-full object-cover" alt={post.title} />
+                                        
+                                        {post.tags && post.tags[0] && (
+                                            <span class="absolute bottom-0 left-0 bg-primary text-white text-[10px] px-2 py-1 uppercase font-bold">
+                                                {post.tags[0]}
+                                            </span>
+                                        )}
+                                    </div>
+                                    <div class="p-4 flex flex-col flex-grow">
+                                        <h4 class="text-sm font-bold text-gray-700 group-hover:text-primary uppercase transition-colors line-clamp-2 mb-2">
+                                            {post.title}
+                                        </h4>
+                                        <p class="text-xs text-gray-500 line-clamp-3 mb-4 flex-grow">
+                                            {post.description}
+                                        </p>
+                                        <span class="text-xs text-primary font-bold mt-auto group-hover:underline">Ler mais &raquo;</span>
+                                    </div>
+                                </a>
+                            )
+                        })}
                     </div>
                 </div>
 

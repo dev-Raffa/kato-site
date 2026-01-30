@@ -1,6 +1,5 @@
 import { type ImageMetadata } from 'astro';
 
-// Import all client images (Updated paths based on Step 51)
 import CocaColaLogo from '../assets/clients/Coca-Cola.png';
 import DSMLogo from '../assets/clients/DSM.webp';
 import FrancaBoiLogo from '../assets/clients/Franca-Boi.jpeg';
@@ -35,7 +34,6 @@ export interface Client {
   logo: ImageMetadata;
 }
 
-// All clients for the main page
 export const clients: Client[] = [
   { name: "Coca-Cola", logo: CocaColaLogo },
   { name: "Anhanguera", logo: AnhangueraLogo },
@@ -59,7 +57,6 @@ export const clients: Client[] = [
   { name: "Rede Araujo", logo: RedeAraujoLogo },
   { name: "Correa", logo: CorreaLogo },
   { name: "Pássaro Marron", logo: PassaroMarronLogo },
-  // Prefeituras
   { name: "Prefeitura de Cajuru", logo: PrefCajuruLogo },
   { name: "Prefeitura de Boa Esperança do Sul", logo: PrefBoaEsperancaLogo },
   { name: "Prefeitura de Campinas", logo: PrefCampinasLogo },
@@ -68,8 +65,6 @@ export const clients: Client[] = [
   { name: "Prefeitura de Guariba", logo: PrefGuaribaLogo },
 ];
 
-// Specific list for Homepage Slider
-// Coca-cola, todas as prefeituras, setran, nanoquimica, prodeste, anhaguera, santa-cruz
 export const homepageClients: Client[] = [
   { name: "Coca-Cola", logo: CocaColaLogo },
   { name: "Prefeitura de Campinas", logo: PrefCampinasLogo },
